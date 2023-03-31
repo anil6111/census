@@ -33,19 +33,6 @@ if uploaded_file is not None:
 
     if st.checkbox('2. HOW CAN WE SET THE CAPTION / HEADING ON THE DATAFRAME?.'):
         st.write(data.sytle.set_caption('Indian Census 2011 Dataset'))
-
-    if st.checkbox('3. SHOW THE RECORDS RELATED WITH THE DISTRICTS - NEW DELHI , LUCKNOW , JAIPUR.'):
-        st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
-
-    
-    #if st.checkbox("4. Calculate state-wise total number of popluation and population with different religions."):
-        #st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
-    
-    if st.checkbox("5. How many Male Workers were there in Maharashtra state ?"):
-        st.write(data[data.State_name == 'MAHARASHTRA']['Male_Workers'].sum())
-    
-    if st.checkbox("6. How to set a column as index of the dataframe ?"):
-        st.write(data.set_index('District_code'))
     
     q7a = st.checkbox("7a. Add a Suffix to the column names.")
     if q7a:
