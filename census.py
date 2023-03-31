@@ -31,9 +31,11 @@ if uploaded_file is not None:
     if st.checkbox('1. HOW WILL YOU HIDE THE INDEXES OF THE DATAFRAME?.'):
         st.write(data.style.hide_index())
 
-    if st.checkbox('2. HOW CAN WE SET THE CAPTION / HEADING ON THE DATAFRAME?.'):
-        st.write(data.sytle.set_caption('Indian Census 2011 Dataset'))
-    
+    #if st.checkbox('2. HOW CAN WE SET THE CAPTION / HEADING ON THE DATAFRAME?.'):
+        #st.write(data.sytle.set_caption('Indian Census 2011 Dataset'))
+
+
+
     q7a = st.checkbox("7a. Add a Suffix to the column names.")
     if q7a:
         st.write(data.add_suffix('_rightone'))
