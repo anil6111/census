@@ -28,29 +28,28 @@ if uploaded_file is not None:
 
     st.title("India Census Data Analysis")
 
-    # Create checkboxes for each question
-    if st.checkbox("1.How will you hide the indexes of the dataframe?."):
+    if st.checkbox('1.HOW WILL YOU HIDE THE INDEXES OF THE DATAFRAME?.'):
         st.write(data.style.hide_index())
-    #1
-    if st.checkbox("2. How can we set the caption / heading on the dataframe?"):
-        st.write(data.style.set_caption('India Census 2011 Dataset'))
-    #2
+
+    if st.checkbox('HOW CAN WE SET THE CAPTION / HEADING ON THE DATAFRAME?.'):
+        st.write(data.sytle.set_caption('Indian Census 2011 Dataset'))
+
     if st.checkbox("3. Show the records related with the districts - New Delhi , Lucknow , Jaipur."):
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
-    #3
+    
     if st.checkbox("4. Calculate state-wise total number of popluation and population with different religions."):
         st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
-    #4
+    
     if st.checkbox("5. How many Male Workers were there in Maharashtra state ?"):
         st.write(data[data.State_name == 'MAHARASHTRA']['Male_Workers'].sum())
-    #5
+    
     if st.checkbox("6. How to set a column as index of the dataframe ?"):
         st.write(data.set_index('District_code'))
-    #6
+    
     q7a = st.checkbox("7a. Add a Suffix to the column names.")
     if q7a:
         st.write(data.add_suffix('_rightone'))
-    #7
+    
     q7b = st.checkbox("7b. Add a Prefix to the column names.")
     if q7b:
         st.write(data.add_prefix('leftone_'))
