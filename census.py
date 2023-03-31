@@ -36,9 +36,10 @@ if uploaded_file is not None:
 
     if st.checkbox('3. SHOW THE RECORDS RELATED WITH THE DISTRICTS - NEW DELHI , LUCKNOW , JAIPUR.'):
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
-        
-    if st.checkbox("4. Calculate state-wise total number of popluation and population with different religions."):
-        st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
+
+    
+    #if st.checkbox("4. Calculate state-wise total number of popluation and population with different religions."):
+        #st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
     
     if st.checkbox("5. How many Male Workers were there in Maharashtra state ?"):
         st.write(data[data.State_name == 'MAHARASHTRA']['Male_Workers'].sum())
