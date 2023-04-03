@@ -32,9 +32,12 @@ if uploaded_file is not None:
     show_q1 = st.checkbox("1.How will you hide the indexes of the dataframe?.")
     if show_q1:
         st.write(data.style.hide_index())
-    show_q2 = st.checkbox("2. How can we set the caption / heading on the dataframe?")
-    if show_q2:
+        
+        
+    if st.checkbox("2. How can we set the caption / heading on the dataframe?"):
         st.write(data.style.set_caption('India Census 2011 Dataset'))
+        
+        
     show_q3 = st.checkbox("3. Show the records related with the districts - New Delhi , Lucknow , Jaipur.")
     if show_q3:
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
