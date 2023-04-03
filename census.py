@@ -30,27 +30,28 @@ if uploaded_file is not None:
 
     # Create checkboxes for each question
     show_q1 = st.checkbox("1.How will you hide the indexes of the dataframe?.")
-    show_q2 = st.checkbox("2. How can we set the caption / heading on the dataframe?")
-    show_q3 = st.checkbox("3. Show the records related with the districts - New Delhi , Lucknow , Jaipur.")
-    show_q4 = st.checkbox("4. Calculate state-wise total number of popluation and population with different religions.")
-    show_q5 = st.checkbox("5. How many Male Workers were there in Maharashtra state ?")
-    show_q6 = st.checkbox("6. How to set a column as index of the dataframe ?")
-    q7a = st.checkbox("7a. Add a Suffix to the column names.")
-    q7b = st.checkbox("7b. Add a Prefix to the column names.")
     if show_q1:
         st.write(data.style.hide_index())
+    show_q2 = st.checkbox("2. How can we set the caption / heading on the dataframe?")
     if show_q2:
         st.write(data.style.set_caption('India Census 2011 Dataset'))
+    show_q3 = st.checkbox("3. Show the records related with the districts - New Delhi , Lucknow , Jaipur.")
     if show_q3:
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
+    show_q4 = st.checkbox("4. Calculate state-wise total number of popluation and population with different religions.")
     if show_q4:
         st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
+    show_q5 = st.checkbox("5. How many Male Workers were there in Maharashtra state ?")
     if show_q5:
         st.write(data[data.State_name == 'MAHARASHTRA']['Male_Workers'].sum())
+        
+    show_q6 = st.checkbox("6. How to set a column as index of the dataframe ?")
     if show_q6:
         st.write(data.set_index('District_code'))
+    q7a = st.checkbox("7a. Add a Suffix to the column names.")
     if q7a:
         st.write(data.add_suffix('_rightone'))
+    q7b = st.checkbox("7b. Add a Prefix to the column names.")
     if q7b:
         st.write(data.add_prefix('leftone_'))
 
