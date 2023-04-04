@@ -27,34 +27,20 @@ if uploaded_file is not None:
     st.dataframe(data)
 
     st.title("India Census Data Analysis")
-
-    # Create checkboxes for each question
-    q7a = st.checkbox("7a. Add a Suffix to the column names.")
-    if q7a:
-        st.write(data.add_suffix('_rightone'))
-    
-    q7b = st.checkbox("7b. Add a Prefix to the column names.")
-    if q7b:
-        st.write(data.add_prefix('leftone_'))
-    
-    show_q1 = st.checkbox("1.How will you hide the indexes of the dataframe?.")
-    if show_q1:
+    if st.checkbox("How will you hide the indexes of the dataframe?"):
         st.write(data.style.hide_index())
-        
-    show_q2 = st.checkbox("2. How can we set the caption / heading on the dataframe?")
-    if show_q2:
+    if st.checkbox("How can we set the caption / heading on the dataframe?"):
         st.write(data.style.set_caption('India Census 2011 Dataset'))
-           
-    show_q3 = st.checkbox("3. Show the records related with the districts - New Delhi , Lucknow , Jaipur.")
-    if show_q3:
+    if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
-    show_q4 = st.checkbox("4. Calculate state-wise total number of popluation and population with different religions.")
-    if show_q4:
+    if st.checkbox("Calculate state-wise total number of popluation and population with different religions"):
         st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
-    show_q5 = st.checkbox("5. How many Male Workers were there in Maharashtra state ?")
-    if show_q5:
+    if st.checkbox("How many Male Workers were there in Maharashtra state ?"):
         st.write(data[data.State_name == 'MAHARASHTRA']['Male_Workers'].sum())
-        
-    show_q6 = st.checkbox("6. How to set a column as index of the dataframe ?")
-    if show_q6:
+    if st.checkbox(" How to set a column as index of the dataframe ?"):
         st.write(data.set_index('District_code'))
+    if st.checkbox("Add a Suffix to the column names"):
+        st.write(data.add_suffix('_rightone'))
+    if st.checkbox("Add a Prefix to the column names"):
+        st.write(data.add_prefix('leftone_'))
+        
