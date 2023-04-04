@@ -44,3 +44,6 @@ if uploaded_file is not None:
     if st.checkbox("Add a Prefix to the column names"):
         st.write(data.add_prefix('leftone_'))
         
+    if st.checkbox("NO OF COLUMNS :"):
+        st.write("no of columns in this dataset :",data.columns)
+        
