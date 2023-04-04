@@ -25,6 +25,10 @@ uploaded_file = st.file_uploader("Choose a India Census Dataset csv")
 if uploaded_file is not None:
     data=pd.read_csv(uploaded_file)
     st.dataframe(data)
+    if st.checkbox("checking weather the data is preprocessed or NOT !?"):
+        st.write(data.isnull().sum())
+    if st.checkbox("NO OF COLUMNS :"):
+        st.write("no of columns in this dataset :",data.columns)
 
     st.title("India Census Data Analysis")
     if st.checkbox("How will you hide the indexes of the dataframe?"):
@@ -44,6 +48,5 @@ if uploaded_file is not None:
     if st.checkbox("Add a Prefix to the column names"):
         st.write(data.add_prefix('leftone_'))
         
-    if st.checkbox("NO OF COLUMNS :"):
-        st.write("no of columns in this dataset :",data.columns)
+    
         
