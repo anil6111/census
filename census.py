@@ -36,6 +36,15 @@ if uploaded_file is not None:
     if st.checkbox("Calculate the correlation coefficient between two Attributes"):
         corr = data['Male_Workers'].corr(data['Female_Workers'])
         st.write("Correlation coefficient:", corr)
+    if st.checkbox("Correlation heatmap between two similar columns"):
+        col1 = data["Male_Workers"]
+        col2 = data["Female_Workers"]
+        df = [col1,col2]
+        corr_matrix = df.corr()
+        sns.heatmap(corr_matrix, annot=True, cmap="coolwarm")
+        plt.title("Correlation Heatmap: {} vs {}".format(col1, col2))
+        plt.show()
+
 
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
         total_population = data['Population'].sum()
