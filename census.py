@@ -31,10 +31,12 @@ if uploaded_file is not None:
         st.write(data.isnull().sum())
     if st.checkbox("NO OF COLUMNS :"):
         st.write("no of columns in this dataset :",data.columns)
+    if st.checkbox("PERFORM SOME STATISTICAL OPERATIONS ---"):
+        st.write(data.describe())
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
         total_population = data['Population'].sum()
         st.write("Total Population of India according to the 2011 Census is:", total_population)
-    if st.checkbox("to find the total population statewise of India according to the 2011 Census? "):
+    if st.checkbox("Find the statewise total population  of India "):
         state_options = data['State_name'].unique()
         selected_state = st.selectbox("Select a state", state_options)
         state_pop_data = data[data['State_name'] == selected_state]
