@@ -33,6 +33,10 @@ if uploaded_file is not None:
         st.write("no of columns in this dataset :",data.columns)
     if st.checkbox("PERFORM SOME STATISTICAL OPERATIONS ---"):
         st.write(data.describe())
+    if st.checkbox("Calculate the correlation coefficient between two Attributes"):
+        corr = data['Male_Workers'].corr(data['Female_Workers'])
+        st.write("Correlation coefficient:", corr)
+
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
         total_population = data['Population'].sum()
         st.write("Total Population of India according to the 2011 Census is:", total_population)
