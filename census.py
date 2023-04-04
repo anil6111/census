@@ -25,12 +25,31 @@ uploaded_file = st.file_uploader("Choose a India Census Dataset csv")
 if uploaded_file is not None:
     data=pd.read_csv(uploaded_file)
     st.dataframe(data)
+    st.title("India Census Data Analysis")
+    
     if st.checkbox("checking weather the data is preprocessed or NOT !?"):
         st.write(data.isnull().sum())
     if st.checkbox("NO OF COLUMNS :"):
         st.write("no of columns in this dataset :",data.columns)
+    if st.checkbox("data Visualizations"):
+        def load_data():
+            return data
+        def main():
+           df = load_data()
+           st.title("My Data Visualization Web Application")
+    
+           # Create data visualizations
+           st.subheader("Data Visualization 1")
+           fig, ax = plt.subplots()
+           sns.histplot(data=data, x="Literate")
+           st.pyplot(fig)
 
-    st.title("India Census Data Analysis")
+           st.subheader("Data Visualization 2")
+           fig = px.scatter(data, x="Literate", y="Workers")
+           st.plotly_chart(fig)
+         if __name__ == "__main__":
+             main()
+    
     if st.checkbox("How will you hide the indexes of the dataframe?"):
         st.write(data.style.hide_index())
     if st.checkbox("How can we set the caption / heading on the dataframe?"):
