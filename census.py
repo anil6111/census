@@ -36,7 +36,8 @@ if uploaded_file is not None:
     if st.checkbox("Calculate the correlation coefficient between two Attributes"):
         corr = data['Male_Workers'].corr(data['Female_Workers'])
         st.write("Correlation coefficient:", corr)
-        sns.heatmap(corr,cmap='ylgnbu')
+        df = sns.heatmap(corr, annot=True, cmap="coolwarm")
+        st.write(df)
     if st.checkbox("Correlation heatmap between two similar columns"):
         
         col1 = "Male_Workers"
