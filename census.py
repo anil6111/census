@@ -31,6 +31,9 @@ if uploaded_file is not None:
         st.write(data.isnull().sum())
     if st.checkbox("NO OF COLUMNS :"):
         st.write("no of columns in this dataset :",data.columns)
+    if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
+        total_population = india_census_data['Population'].sum()
+        st.write("Total Population of India according to the 2011 Census is:", total_population)
         
         
     if st.checkbox("data Visualizations"):
