@@ -45,6 +45,12 @@ if uploaded_file is not None:
             sns.histplot(data=data, x="Population")
             st.pyplot(fig)
             
+            #st.subheader("Data Visualization 2")
+            #fig = px.scatter(data, x="Literate", y="Workers")
+            #st.plotly_chart(fig)
+        if __name__ == "__main__":
+            main()
+            
             
     
     if st.checkbox("How will you hide the indexes of the dataframe?"):
