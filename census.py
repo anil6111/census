@@ -32,9 +32,6 @@ if uploaded_file is not None:
     q7a = st.checkbox("7a. Add a Suffix to the column names.")
     if q7a:
         st.write(data.add_suffix('_rightone'))
-        
-    if st.checkbox("2. How can we set the caption / heading on the dataframe?"):
-        st.write(data.style.set_caption('India Census 2011 Dataset'))
     
     q7b = st.checkbox("7b. Add a Prefix to the column names.")
     if q7b:
