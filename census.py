@@ -34,6 +34,11 @@ if uploaded_file is not None:
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
         total_population = data['Population'].sum()
         st.write("Total Population of India according to the 2011 Census is:", total_population)
+    if st.checkbox("to find the total population statewise of India according to the 2011 Census? "):
+        state_options = data['State / Union Territory'].unique()
+        selected_state = st.selectbox("Select a state", state_options)
+        state_pop_data = data[data['State / Union Territory'] == selected_state]
+        st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
         
         
     if st.checkbox("data Visualizations"):
