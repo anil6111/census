@@ -44,7 +44,7 @@ if uploaded_file is not None:
         corr_matrix = df.corr()
         sns.heatmap(corr_matrix, annot=True, cmap="coolwarm")
         plt.title("Correlation Heatmap: {} vs {}".format(col1, col2))
-        st.write(plt.show())
+        st.plt.show()
 
 
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
