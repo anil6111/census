@@ -48,7 +48,8 @@ if uploaded_file is not None:
            fig = px.scatter(data, x="Literate", y="Workers")
            st.plotly_chart(fig)
          if __name__ == "__main__":
-             main()
+            main()
+             
     
     if st.checkbox("How will you hide the indexes of the dataframe?"):
         st.write(data.style.hide_index())
