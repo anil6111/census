@@ -53,6 +53,12 @@ if uploaded_file is not None:
         selected_state = st.selectbox("Select a state", state_options)
         state_pop_data = data[data['State_name'] == selected_state]
         st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
+    if st.checkbox("pie chart of female workers vs male workers :"):
+        fig,ax=plt.subplots()
+        x=np.array(data['State_name']=='GUJARAT'.value_counts(),data['State_name']=='ORISSA'.value_counts(),data['State_name']=='ANDHRA PRADESH'.value_counts())
+        mylabels=['GUJARAT','ORISSA','ANDHRA PRADESH']
+        sns.pie(x,labels=mylabels)
+        st.pyplot(fig)
         
         
     if st.checkbox("data Visualizations"):
