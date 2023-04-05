@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.express as px
 import streamlit as st
 import random
 from PIL import Image
@@ -55,7 +56,6 @@ if uploaded_file is not None:
         plt.xticks(rotation=20)
         st.pyplot(fig)
     if st.checkbox("pie chart"):
-        import plotly.express as px
         column_name = st.selectbox('Select a column for the pie chart', data.columns)
         value_counts = data[column_name].value_counts()
         fig = px.pie(values=value_counts.values, names=value_counts.index)
