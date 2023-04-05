@@ -43,9 +43,9 @@ if uploaded_file is not None:
         sns.heatmap(corr_matrix)
         plt.title("Correlation Heatmap :")
         st.pyplot(fig)
-    if st.checkbox("line plot :"):
+    if st.checkbox("line plot "):
         fig,ax=plt.subplot()
-        sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'])
+        sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'],ax=ax)
         plt.title("LINE PLOT ")
         st.pyplot(fig)
 
