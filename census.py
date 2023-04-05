@@ -43,6 +43,11 @@ if uploaded_file is not None:
         sns.heatmap(corr_matrix)
         plt.title("Correlation Heatmap :")
         st.pyplot(fig)
+    if st.checkbox("line plot :"):
+        fig,ax=plt.subplot()
+        sns.lineplot(data=data,x='Male_Workers',y='Female_Workers')
+        plt.title("LINE PLOT ")
+        st.pyplot(fig)
 
 
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
