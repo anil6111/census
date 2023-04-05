@@ -54,6 +54,13 @@ if uploaded_file is not None:
         ax.set_ylabel('Population')
         plt.xticks(rotation=20)
         st.pyplot(fig)
+    if st.checkbox("pie chart"):
+        column_name = st.selectbox('Select a column for the pie chart', data.columns)
+        value_counts = data[column_name].value_counts()
+        fig = px.pie(values=value_counts.values, names=value_counts.index)
+        st.plotly_chart(fig)
+
+
     if st.checkbox("line plot "):
         sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'])
         plt.title("LINE PLOT ")
