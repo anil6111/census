@@ -52,7 +52,7 @@ if uploaded_file is not None:
         ax.set_title('Population of Top 10 Cities in India (Census 2011)')
         ax.set_xlabel('State_name')
         ax.set_ylabel('Population')
-        plt.xticks(rotation=45)
+        plt.xticks(rotation=20)
         st.pyplot(fig)
     if st.checkbox("line plot "):
         sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'])
