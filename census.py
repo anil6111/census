@@ -38,11 +38,11 @@ if uploaded_file is not None:
         st.write("Correlation coefficient:", corr)
         
     if st.checkbox("Correlation heatmap between two similar columns"):
-        
+        fig,ax=plt.subplots()
         corr_matrix = data.iloc[3,4,5,7,8,9].corr()
-        sns.heatmap(corr_matrix, annot=True, cmap="coolwarm")
-        plt.title("Correlation Heatmap: {} vs {}".format(col1, col2))
-        plt.show()
+        sns.heatmap(corr_matrix, ax=ax,annot=True, cmap="coolwarm")
+        plt.title("Correlation Heatmap :")
+        st.pyplot(fig)
 
 
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
