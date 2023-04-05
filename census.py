@@ -55,9 +55,10 @@ if uploaded_file is not None:
         plt.xticks(rotation=20)
         st.pyplot(fig)
     if st.checkbox("pie chart"):
+        import plotly.express as px
         column_name = st.selectbox('Select a column for the pie chart', data.columns)
         value_counts = data[column_name].value_counts()
-        fig = sns.pie(values=value_counts.values, names=value_counts.index)
+        fig = px.pie(values=value_counts.values, names=value_counts.index)
         st.plotly_chart(fig)
 
 
