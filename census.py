@@ -45,11 +45,11 @@ if uploaded_file is not None:
         corr = data['Male_Workers'].corr(data['Female_Workers'])
         st.write("Correlation coefficient:", corr)
 
-    if st.checkbox("Population of Top 5 Cities in India (Census 2011)"):
-        data = data.sort_values('Population', ascending=False).head(5)
+    if st.checkbox("Population of Top 10 Cities in India (Census 2011)"):
+        data = data.sort_values('Population', ascending=False).head(20)
         fig, ax = plt.subplots()
         ax.bar(data['State_name'], data['Population'])
-        ax.set_title('Population of Top 5 Cities in India (Census 2011)')
+        ax.set_title('Population of Top 10 Cities in India (Census 2011)')
         ax.set_xlabel('State_name')
         ax.set_ylabel('Population')
         plt.xticks(rotation=20)
