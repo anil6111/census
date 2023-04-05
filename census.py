@@ -45,7 +45,7 @@ if uploaded_file is not None:
         st.pyplot(fig)
     if st.checkbox("line plot :"):
         fig,ax=plt.subplot()
-        sns.lineplot(data=data,x='Male_Workers',y='Female_Workers')
+        sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'])
         plt.title("LINE PLOT ")
         st.pyplot(fig)
 
