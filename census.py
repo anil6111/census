@@ -57,7 +57,7 @@ if uploaded_file is not None:
     if st.checkbox("pie chart"):
         column_name = st.selectbox('Select a column for the pie chart', data.columns)
         value_counts = data[column_name].value_counts()
-        fig = px.pie(values=value_counts.values, names=value_counts.index)
+        fig = data.pie(values=value_counts.values, names=value_counts.index)
         st.plotly_chart(fig)
 
 
