@@ -33,22 +33,6 @@ if uploaded_file is not None:
         st.write("no of columns in this dataset :",data.columns)
     if st.checkbox("PERFORM SOME STATISTICAL OPERATIONS ---"):
         st.write(data.describe())
-    if st.checkbox("Calculate the correlation coefficient between two Attributes"):
-        corr = data['Male_Workers'].corr(data['Female_Workers'])
-        st.write("Correlation coefficient:", corr)
-        
-    if st.checkbox("Correlation heatmap between two similar columns"):
-        corr_matrix = data.iloc[:,3:7].corr()
-        fig,ax=plt.subplots()
-        sns.heatmap(corr_matrix)
-        plt.title("Correlation Heatmap :")
-        st.pyplot(fig)
-    if st.checkbox("line plot "):
-        sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'])
-        plt.title("LINE PLOT ")
-        st.pyplot.show()
-
-
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
         total_population = data['Population'].sum()
         st.write("Total Population of India according to the 2011 Census is:", total_population)
@@ -57,6 +41,24 @@ if uploaded_file is not None:
         selected_state = st.selectbox("Select a state", state_options)
         state_pop_data = data[data['State_name'] == selected_state]
         st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
+    if st.checkbox("Calculate the correlation coefficient between two Attributes"):
+        corr = data['Male_Workers'].corr(data['Female_Workers'])
+        st.write("Correlation coefficient:", corr)
+
+    if st.checkbox("Population of Top 10 Cities in India (Census 2011)"):
+        data = data.sort_values('Population', ascending=False).head(10)
+        fig, ax = plt.subplots()
+        ax.bar(df['State_name'], df['Population'])
+        ax.set_title('Population of Top 10 Cities in India (Census 2011)')
+        ax.set_xlabel('State_name')
+        ax.set_ylabel('Population')
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
+    if st.checkbox("line plot "):
+        sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'])
+        plt.title("LINE PLOT ")
+        st.pyplot.show()
+
     if st.checkbox("pie chart of female workers vs male workers :"):
         fig,ax=plt.subplots()
         x=[data['State_name']==HARYANA.value_counts(),data['State_name']==ORISSA.value_counts(),data['State_name']==KERALA.value_counts()]
@@ -65,25 +67,7 @@ if uploaded_file is not None:
         st.pyplot(fig)
         
         
-    if st.checkbox("data Visualizations"):
-        def load_data():
-            return data
-        def main():
-            df = load_data()
-            st.title("My Data visualization Web Application")
-            
-            st.subheader("Data Visualization 1")
-            fig, ax = plt.subplots(figsize = (30,10))
-            sns.histplot(data=data,x='State_name')
-            st.pyplot(fig)
-            
-            #st.subheader("Data Visualization 2")
-            #fig = px.scatter(data, x="Literate", y="Workers")
-            #st.plotly_chart(fig)
-        if __name__ == "__main__":
-            main()
-            
-            
+    
     
     if st.checkbox("How will you hide the indexes of the dataframe?"):
         st.write(data.style.hide_index())
@@ -101,6 +85,34 @@ if uploaded_file is not None:
         st.write(data.add_suffix('_rightone'))
     if st.checkbox("Add a Prefix to the column names"):
         st.write(data.add_prefix('leftone_'))
+
+    if st.checkbox("data Visualizations"):
+        def load_data():
+            return data
+        def main():
+            df = load_data()
+            st.title("My Data visualization Web Application")
+            
+            st.subheader("Data Visualization 1")
+            fig, ax = plt.subplots(figsize = (30,10))
+            sns.histplot(data=data,x='State_name')
+            st.pyplot(fig)
+            
+            #st.subheader("Data Visualization 2")
+            #fig = px.scatter(data, x="Literate", y="Workers")
+            #st.plotly_chart(fig)
+        if __name__ == "__main__":
+            main()
+    
+    if st.checkbox("Correlation heatmap between two similar columns"):
+        corr_matrix = data.iloc[:,3:7].corr()
+        fig,ax=plt.subplots()
+        sns.heatmap(corr_matrix)
+        plt.title("Correlation Heatmap :")
+        st.pyplot(fig)
+    
+            
+            
         
     
         
