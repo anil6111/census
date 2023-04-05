@@ -66,7 +66,7 @@ if uploaded_file is not None:
             
             st.subheader("Data Visualization 1")
             fig, ax = plt.subplots()
-            sns.histplot(data=State_name, x="Population")
+            sns.histplot(data=data,x='State_name')
             st.pyplot(fig)
             
             #st.subheader("Data Visualization 2")
