@@ -38,9 +38,9 @@ if uploaded_file is not None:
         st.write("Correlation coefficient:", corr)
         
     if st.checkbox("Correlation heatmap between two similar columns"):
-        fig,ax=plt.subplots()
         corr_matrix = data.iloc[3,4,5,7,8,9].corr()
-        sns.heatmap(corr_matrix, ax=ax,annot=True, cmap="coolwarm")
+        fig,ax=plt.subplots()
+        sns.heatmap(corr_matrix)
         plt.title("Correlation Heatmap :")
         st.pyplot(fig)
 
