@@ -65,7 +65,7 @@ if uploaded_file is not None:
             st.title("My Data visualization Web Application")
             
             st.subheader("Data Visualization 1")
-            fig, ax = plt.subplots()
+            fig, ax = plt.subplots(figsize = (25,10))
             sns.histplot(data=data,x='State_name')
             st.pyplot(fig)
             
