@@ -46,7 +46,7 @@ if uploaded_file is not None:
     if st.checkbox("line plot "):
         sns.lineplot(x=data['Male_Workers'],y=data['Female_Workers'])
         plt.title("LINE PLOT ")
-        st.plt.show()
+        st.pyplot.show()
 
 
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
