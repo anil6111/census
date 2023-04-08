@@ -54,7 +54,7 @@ if uploaded_file is not None:
         ax.set_title('Population of Top 10 Cities in India (Census 2011)')
         ax.set_xlabel('State_name')
         ax.set_ylabel('Population')
-        plt.xticks(rotation=20)
+        plt.xticks(rotation=10)
         st.pyplot(fig)
         
     
