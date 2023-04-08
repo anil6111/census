@@ -81,8 +81,7 @@ if uploaded_file is not None:
         
     
     st.subheader("Data visualization -->>")
-    clicked = st.button("click here")
-    st.checkbok(clicked)
+    
 
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
@@ -98,39 +97,34 @@ if uploaded_file is not None:
             highest_literacy = data.groupby('State_name').agg({'Literate': 'mean'}).sort_values(by='Literate', ascending=False).head(1)
             fig = px.bar(data, x='State_name', y='Literate', title='Literacy rate by state', height=500)
             st.plotly_chart(fig)
-    
-    
-    
-    if st.checkbox("Which states have the highest number of male and female workers?"):
-        workers = data.groupby('State_name').agg({'Male_Workers': 'sum', 'Female_Workers': 'sum'}).sort_values(by='Male_Workers', ascending=True).head(10)
-        fig = px.bar(workers, x=workers.index, y=['Male_Workers', 'Female_Workers'], title='Number of Male and Female Workers by State', barmode='group', height=500)
-        st.plotly_chart(fig)
-    
-    if st.checkbox("Population by state on a line chart"):
-        pop_data = data.groupby('State_name').agg({'Population': 'sum'}).reset_index()
-        fig = px.line(pop_data, x='State_name', y='Population', title='Line Chart Population by State')
-        st.plotly_chart(fig)
-    
-    if st.checkbox("Histogram for showing the Age Groups"):
-        fig, ax = plt.subplots(figsize=(10, 5))
-        ax.hist(data['Age_Group_0_29'], bins=10,label='Age 0-29',color='skyblue',edgecolor='black')
-        ax.hist(data['Age_Group_30_49'], bins=10,label='Age 30-49',edgecolor='black')
-        ax.hist(data['Age_Group_50'], bins=10,label='Age 50',color='royalblue',edgecolor='black')
-        ax.set_title('Histogram of Age Group Population')
-        ax.set_xlabel('Total Population')
-        ax.set_ylabel('Frequency')
-        plt.legend()
-        st.pyplot(fig)
+        if st.checkbox("Which states have the highest number of male and female workers?"):
+            workers = data.groupby('State_name').agg({'Male_Workers': 'sum', 'Female_Workers': 'sum'}).sort_values(by='Male_Workers', ascending=True).head(10)
+            fig = px.bar(workers, x=workers.index, y=['Male_Workers', 'Female_Workers'], title='Number of Male and Female Workers by State', barmode='group', height=500)
+            st.plotly_chart(fig)
+        if st.checkbox("Population by state on a line chart"):
+            pop_data = data.groupby('State_name').agg({'Population': 'sum'}).reset_index()
+            fig = px.line(pop_data, x='State_name', y='Population', title='Line Chart Population by State')
+            st.plotly_chart(fig)
+        if st.checkbox("Histogram for showing the Age Groups"):
+            fig, ax = plt.subplots(figsize=(10, 5))
+            ax.hist(data['Age_Group_0_29'], bins=10,label='Age 0-29',color='skyblue',edgecolor='black')
+            ax.hist(data['Age_Group_30_49'], bins=10,label='Age 30-49',edgecolor='black')
+            ax.hist(data['Age_Group_50'], bins=10,label='Age 50',color='royalblue',edgecolor='black')
+            ax.set_title('Histogram of Age Group Population')
+            ax.set_xlabel('Total Population')
+            ax.set_ylabel('Frequency')
+            plt.legend()
+            st.pyplot(fig)
+        if st.checkbox("Population of Top 8 Cities in India (Census 2011)"):
+            data = data.sort_values('Population', ascending=False).head(20)
+            fig, ax = plt.subplots()
+            ax.bar(data['State_name'], data['Population'])
+            ax.set_title('Population of Top 8 Cities in India (Census 2011)')
+            ax.set_xlabel('State_name')
+            ax.set_ylabel('Population')
+            plt.xticks(rotation=20)
+            st.pyplot(fig)
 
-    if st.checkbox("Population of Top 8 Cities in India (Census 2011)"):
-        data = data.sort_values('Population', ascending=False).head(20)
-        fig, ax = plt.subplots()
-        ax.bar(data['State_name'], data['Population'])
-        ax.set_title('Population of Top 8 Cities in India (Census 2011)')
-        ax.set_xlabel('State_name')
-        ax.set_ylabel('Population')
-        plt.xticks(rotation=20)
-        st.pyplot(fig)
 
     if st.header("Check the Details of Selected States and Districts"):
         state_options = data["State_name"].unique()
