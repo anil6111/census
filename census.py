@@ -33,7 +33,7 @@ if uploaded_file is not None:
         st.write(data.isnull().sum())
     if st.checkbox("Perform some column operations :"):
         if st.checkbox("What are the columns present in the dataset"):
-        st.write(data.columns)
+            st.write(data.columns)
         if st.checkbox(" How to set a column as index of the dataframe ?"):
             st.write(data.set_index('District_code'))
         if st.checkbox("Add a Suffix to the column names"):
