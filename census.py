@@ -65,7 +65,7 @@ if uploaded_file is not None:
         state_pop_data = data[data['State_name'] == selected_state]
         highest_population = data.groupby('State_name').agg({'Population': 'sum'}).sort_values(by='Population', ascending=False).head(1)
         
-        st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
+        st.write(f"Total population of {selected_state} in 2011: {highest_population.iloc[0]['Population']:,}")
     
     if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
