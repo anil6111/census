@@ -56,6 +56,17 @@ if uploaded_file is not None:
         state_pop_data = data[data['State_name'] == selected_state]
         st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
     
+    if st.checkbox("Calculate the correlation coefficient between two Attributes"):
+        corr = data['Male_Workers'].corr(data['Female_Workers'])
+        st.write("Correlation coefficient:", corr)
+
+        if st.checkbox("Correlation heatmap between two similar columns"):
+        corr_matrix = data.iloc[:,3:7].corr()
+        fig,ax=plt.subplots()
+        sns.heatmap(corr_matrix)
+        plt.title("Correlation Heatmap :")
+        st.pyplot(fig)
+    
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
         fig = plt.figure(figsize=(50,25))
