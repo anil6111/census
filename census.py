@@ -58,7 +58,7 @@ if uploaded_file is not None:
         highest_population = data.groupby('State_name').agg({'Population': 'sum'}).sort_values(by='Population', ascending=False).head(1)
         st.write(f"{highest_population.index[0]} has the highest population of {highest_population['Population'][0]} it is beacause the no of districts in uttar pradesh is more")
     
-    if st.checkbox("Find the statewise total population  of India "):
+    if st.checkbox("Find the statewise population  of India "):
         state = st.selectbox('Select a state:', sorted(data['State_name'].unique()))
         state_data = data[data['State_name'] == state]
         district_populations = state_data.groupby('District_name')['Population'].sum()
@@ -95,7 +95,7 @@ if uploaded_file is not None:
     if __name__ == '__main__':
         indian_census()
         
-    if st.checkbox("Data visualization -->>"):
+    if st.checkbox("Data visualizations -->>"):
         if st.checkbox("Show the percentages of Religions in India by a piechart"):
             st.write()
             fig = plt.figure(figsize=(50,25))
