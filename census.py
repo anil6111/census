@@ -63,6 +63,8 @@ if uploaded_file is not None:
         state_options = data['State_name'].unique()
         selected_state = st.selectbox("Select a state", state_options)
         state_pop_data = data[data['State_name'] == selected_state]
+        highest_population = data.groupby('State_name').agg({'Population': 'sum'}).sort_values(by='Population', ascending=False).head(1)
+        
         st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
     
     if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
@@ -118,16 +120,16 @@ if uploaded_file is not None:
         plt.legend()
         st.pyplot(fig)
 
-    if st.checkbox("Population of Top 10 Cities in India (Census 2011)"):
-        data = data.sort_values('Population', ascending=False).head(10)
+    if st.checkbox("Population of Top 8 Cities in India (Census 2011)"):
+        data = data.sort_values('Population', ascending=False).head(20)
         fig, ax = plt.subplots()
         ax.bar(data['State_name'], data['Population'])
-        ax.set_title('Population of Top 10 Cities in India (Census 2011)')
+        ax.set_title('Population of Top 8 Cities in India (Census 2011)')
         ax.set_xlabel('State_name')
         ax.set_ylabel('Population')
         plt.xticks(rotation=20)
         st.pyplot(fig)
-        
+
     if st.header("Check the Details of Selected States and Districts"):
         state_options = data["State_name"].unique()
         district_options = {}
