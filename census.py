@@ -33,6 +33,15 @@ if uploaded_file is not None:
         st.write(data.isnull().sum())
     if st.checkbox("What are the columns present in the dataset"):
         st.write(data.columns)
+
+        st.subheader("Perform some column operations :")
+        if st.checkbox(" How to set a column as index of the dataframe ?"):
+            st.write(data.set_index('District_code'))
+        if st.checkbox("Add a Suffix to the column names"):
+            st.write(data.add_suffix('_rightone'))
+        if st.checkbox("Add a Prefix to the column names"):
+            st.write(data.add_prefix('leftone_'))
+   
     if st.checkbox("PERFORM SOME STATISTICAL OPERATIONS ---"):
         st.write(data.describe())
     
@@ -122,4 +131,14 @@ if uploaded_file is not None:
         else:
             filtered_data = data.loc[data["State_name"] == selected_state]
         st.write(filtered_data)
+
+    if st.checkbox("Population of Top 10 Cities in India (Census 2011)"):
+        data = data.sort_values('Population', ascending=False).head(10)
+        fig, ax = plt.subplots()
+        ax.bar(data['State_name'], data['Population'])
+        ax.set_title('Population of Top 10 Cities in India (Census 2011)')
+        ax.set_xlabel('State_name')
+        ax.set_ylabel('Population')
+        plt.xticks(rotation=20)
+        st.pyplot(fig)
 
