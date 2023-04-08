@@ -81,7 +81,8 @@ if uploaded_file is not None:
         
     
     st.subheader("Data visualization -->>")
-    st.button("click here")
+    clicked = st.button("click here")
+    st.checkbok(clicked)
 
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
