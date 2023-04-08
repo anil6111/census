@@ -79,8 +79,9 @@ if uploaded_file is not None:
             plt.title("Correlation Heatmap :")
             st.pyplot(fig)
         
-    st.title("Data visualization on indian census :")
-    st.subheader("PIECHART-->")
+    
+    st.subheader("Data visualization -->>")
+    st.button("click here")
 
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
