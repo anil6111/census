@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+import plotly.express as px
 import random
 from PIL import Image
 logo = Image.open('logo.png')
@@ -33,6 +34,10 @@ if uploaded_file is not None:
         st.write("no of columns in this dataset :",data.columns)
     if st.checkbox("PERFORM SOME STATISTICAL OPERATIONS ---"):
         st.write(data.describe())
+    if st.checkbox("Calculate state-wise total number of popluation and population with different religions"):
+        st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
+    
+    
     if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
         total_population = data['Population'].sum()
         st.write("Total Population of India according to the 2011 Census is:", total_population)
