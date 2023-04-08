@@ -77,6 +77,22 @@ if uploaded_file is not None:
             sns.heatmap(corr_matrix)
             plt.title("Correlation Heatmap :")
             st.pyplot(fig)
+    
+    def calc_pop_density(population, area):
+        return population / area
+
+    def indian_census():
+        st.title("India Population Density Calculator")
+
+        # Get user input for population and area
+        population = st.number_input("Enter India's population in 2011:")
+        area = st.number_input("Enter India's land area in square kilometers:")
+
+        if population and area:
+            pop_density = calc_pop_density(population, area)
+            st.write("The population density of India in 2011 was:", pop_density, "people per square kilometer")
+    if __name__ == '__main__':
+        indian_census()
         
     if st.checkbox("Data visualization -->>"):
         if st.checkbox("Show the percentages of Religions in India by a piechart"):
