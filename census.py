@@ -80,19 +80,19 @@ if uploaded_file is not None:
             st.pyplot(fig)
         
     
-    st.subheader("Data visualization -->>")
     
-
-    if st.checkbox("Show the percentages of Religions in India by a piechart"):
-        st.write()
-        fig = plt.figure(figsize=(50,25))
-        ax1 = plt.subplot(312)
-        explode = (0, 0.1, 0, 0)
-        labels = ['Sikhs', 'Christians', 'Jains', 'Buddhists']
-        val = [data.Sikhs.sum(),data.Christians.sum(),data.Jains.sum(),data.Buddhists.sum()]
-        ax1.pie(val, explode=explode, labels=labels, autopct='%1.1f%%', shadow=False, startangle=270)
-        plt.title('Pie Chart of Religions')
-        st.pyplot(fig)
+    
+    if st.checkbox("Data visualization -->>"):
+        if st.checkbox("Show the percentages of Religions in India by a piechart"):
+            st.write()
+            fig = plt.figure(figsize=(50,25))
+            ax1 = plt.subplot(312)
+            explode = (0, 0.1, 0, 0)
+            labels = ['Sikhs', 'Christians', 'Jains', 'Buddhists']
+            val = [data.Sikhs.sum(),data.Christians.sum(),data.Jains.sum(),data.Buddhists.sum()]
+            ax1.pie(val, explode=explode, labels=labels, autopct='%1.1f%%', shadow=False, startangle=270)
+            plt.title('Pie Chart of Religions')
+            st.pyplot(fig)
         if st.checkbox("Which state has the highest literacy rate?"):
             highest_literacy = data.groupby('State_name').agg({'Literate': 'mean'}).sort_values(by='Literate', ascending=False).head(1)
             fig = px.bar(data, x='State_name', y='Literate', title='Literacy rate by state', height=500)
