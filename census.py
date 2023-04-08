@@ -59,11 +59,12 @@ if uploaded_file is not None:
         st.write(f"{highest_population.index[0]} has the highest population of {highest_population['Population'][0]} it is beacause the no of districts in uttar pradesh is more")
     
     if st.checkbox("Find the statewise total population  of India "):
-        state_options = data['State_name'].unique()
-        selected_state = st.selectbox("Select a state", state_options)
-        state_pop_data = data[data['State_name'].sum() == selected_state]
-        st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
-    
+        state = st.selectbox('Select a state:', sorted(data['State_name'].unique()))
+        state_data = data[data['State_name'] == state]
+        district_populations = state_data.groupby('District_name')['Population'].sum()
+        st.write('Total population by district in', state, ':')
+        st.write(district_populations)
+        
     if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
     
