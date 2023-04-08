@@ -56,6 +56,9 @@ if uploaded_file is not None:
         state_pop_data = data[data['State_name'] == selected_state]
         st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
     
+    if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
+        st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
+    
     if st.checkbox("Calculate the correlation coefficient between two Attributes"):
         corr = data['Male_Workers'].corr(data['Female_Workers'])
         st.write("Correlation coefficient:", corr)
@@ -106,15 +109,17 @@ if uploaded_file is not None:
         plt.legend()
         st.pyplot(fig)
 
+    
     if st.header("Check the Details of Selected States and Districts"):
         state_options = data["State_name"].unique()
         district_options = {}
         for state in state_options:
            district_options[state] = data.loc[data["State_name"] == state, "District_name"].unique()
-        selected_state = st.selectbox("Select a state", state_options)
+        selected_state = st.selectbox("Select a state",state_options)
         selected_districts = st.multiselect("Select districts", district_options[selected_state])
         if selected_districts:
             filtered_data = data.loc[(data["State_name"] == selected_state) & (data["District_name"].isin(selected_districts))]
         else:
             filtered_data = data.loc[data["State_name"] == selected_state]
         st.write(filtered_data)
+
