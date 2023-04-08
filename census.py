@@ -28,8 +28,13 @@ if uploaded_file is not None:
     st.dataframe(data)
     
     st.title("India Census Data Analysis")
+
+    if st.checkbox("checking weather the data is preprocessed or NOT !?"):
+        st.write(data.isnull().sum())
     if st.checkbox("What are the columns present in the dataset"):
         st.write(data.columns)
+    if st.checkbox("PERFORM SOME STATISTICAL OPERATIONS ---"):
+        st.write(data.describe())
     
     if st.checkbox("Calculate state-wise total number of popluation and population with different religions"):
         st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
@@ -37,9 +42,19 @@ if uploaded_file is not None:
     if st.checkbox("How many Male Workers were there in Maharashtra state ?"):
         st.write(data[data.State_name == 'MAHARASHTRA']['Male_Workers'].sum())
     
+    if st.checkbox("Calculate the total population of India according to the 2011 Census?"):
+        total_population = data['Population'].sum()
+        st.write("Total Population of India according to the 2011 Census is:", total_population)
+    
     if st.checkbox("Which state has the highest population?"):
         highest_population = data.groupby('State_name').agg({'Population': 'sum'}).sort_values(by='Population', ascending=False).head(1)
         st.write(f"{highest_population.index[0]} has the highest population of {highest_population['Population'][0]} it is beacause the no of districts in uttar pradesh is more")
+    
+    if st.checkbox("Find the statewise total population  of India "):
+        state_options = data['State_name'].unique()
+        selected_state = st.selectbox("Select a state", state_options)
+        state_pop_data = data[data['State_name'] == selected_state]
+        st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
     
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
