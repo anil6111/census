@@ -31,10 +31,9 @@ if uploaded_file is not None:
 
     if st.checkbox("checking weather the data is preprocessed or NOT !?"):
         st.write(data.isnull().sum())
-    if st.checkbox("What are the columns present in the dataset"):
+    if st.checkbox("Perform some column operations :"):
+        if st.checkbox("What are the columns present in the dataset"):
         st.write(data.columns)
-
-        st.subheader("Perform some column operations :")
         if st.checkbox(" How to set a column as index of the dataframe ?"):
             st.write(data.set_index('District_code'))
         if st.checkbox("Add a Suffix to the column names"):
@@ -79,9 +78,6 @@ if uploaded_file is not None:
             plt.title("Correlation Heatmap :")
             st.pyplot(fig)
         
-    
-    
-    
     if st.checkbox("Data visualization -->>"):
         if st.checkbox("Show the percentages of Religions in India by a piechart"):
             st.write()
@@ -115,17 +111,7 @@ if uploaded_file is not None:
             ax.set_ylabel('Frequency')
             plt.legend()
             st.pyplot(fig)
-        if st.checkbox("Population of Top 8 Cities in India (Census 2011)"):
-            data = data.sort_values('Population', ascending=False).head(20)
-            fig, ax = plt.subplots()
-            ax.bar(data['State_name'], data['Population'])
-            ax.set_title('Population of Top 8 Cities in India (Census 2011)')
-            ax.set_xlabel('State_name')
-            ax.set_ylabel('Population')
-            plt.xticks(rotation=20)
-            st.pyplot(fig)
-
-
+        
     if st.header("Check the Details of Selected States and Districts"):
         state_options = data["State_name"].unique()
         district_options = {}
