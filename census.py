@@ -61,7 +61,7 @@ if uploaded_file is not None:
     if st.checkbox("Find the statewise total population  of India "):
         state_options = data['State_name'].unique()
         selected_state = st.selectbox("Select a state", state_options)
-        state_pop_data = data[data['State_name'] == selected_state]
+        state_pop_data = data[data['State_name'].sum() == selected_state]
         st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
     
     if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
