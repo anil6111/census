@@ -63,9 +63,7 @@ if uploaded_file is not None:
         state_options = data['State_name'].unique()
         selected_state = st.selectbox("Select a state", state_options)
         state_pop_data = data[data['State_name'] == selected_state]
-        highest_population = data.groupby('State_name').agg({'Population': 'sum'}).sort_values(by='Population', ascending=False).head(1)
-        
-        st.write(f"Total population of {selected_state} in 2011: {highest_population.iloc[0]['Population']:,}")
+        st.write(f"Total population of {selected_state} in 2011: {state_pop_data.iloc[0]['Population']:,}")
     
     if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
@@ -81,7 +79,8 @@ if uploaded_file is not None:
             plt.title("Correlation Heatmap :")
             st.pyplot(fig)
         
-    
+    st.title("Data visualization on indian census :")
+    st.subheader("PIECHART-->")
 
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
@@ -93,11 +92,12 @@ if uploaded_file is not None:
         ax1.pie(val, explode=explode, labels=labels, autopct='%1.1f%%', shadow=False, startangle=270)
         plt.title('Pie Chart of Religions')
         st.pyplot(fig)
+        if st.checkbox("Which state has the highest literacy rate?"):
+            highest_literacy = data.groupby('State_name').agg({'Literate': 'mean'}).sort_values(by='Literate', ascending=False).head(1)
+            fig = px.bar(data, x='State_name', y='Literate', title='Literacy rate by state', height=500)
+            st.plotly_chart(fig)
     
-    if st.checkbox("Which state has the highest literacy rate?"):
-        highest_literacy = data.groupby('State_name').agg({'Literate': 'mean'}).sort_values(by='Literate', ascending=False).head(1)
-        fig = px.bar(data, x='State_name', y='Literate', title='Literacy rate by state', height=500)
-        st.plotly_chart(fig)
+    
     
     if st.checkbox("Which states have the highest number of male and female workers?"):
         workers = data.groupby('State_name').agg({'Male_Workers': 'sum', 'Female_Workers': 'sum'}).sort_values(by='Male_Workers', ascending=True).head(10)
