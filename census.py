@@ -67,6 +67,8 @@ if uploaded_file is not None:
             plt.title("Correlation Heatmap :")
             st.pyplot(fig)
         
+    
+
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
         fig = plt.figure(figsize=(50,25))
