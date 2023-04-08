@@ -65,11 +65,6 @@ if uploaded_file is not None:
         st.write('Total population by district in', state, ':')
         st.write(district_populations)
     
-    if st.checkbox("the gender ratio of India "):
-        total_male_population = data['Male']['Population'].sum()
-        total_female_population = data['Female']['Population'].sum()
-        gender_ratio = total_female_population / total_male_population
-        st.write('Gender ratio of India:', gender_ratio)
         
     if st.checkbox("Show the records related with the districts - New Delhi , Lucknow , Jaipur"):
         st.write(data[data['District_name'].isin(['New Delhi', 'Lucknow', 'Jaipur'])])
