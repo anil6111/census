@@ -61,12 +61,12 @@ if uploaded_file is not None:
         st.write("Correlation coefficient:", corr)
 
         if st.checkbox("Correlation heatmap between two similar columns"):
-        corr_matrix = data.iloc[:,3:7].corr()
-        fig,ax=plt.subplots()
-        sns.heatmap(corr_matrix)
-        plt.title("Correlation Heatmap :")
-        st.pyplot(fig)
-    
+            corr_matrix = data.iloc[:,3:7].corr()
+            fig,ax=plt.subplots()
+            sns.heatmap(corr_matrix)
+            plt.title("Correlation Heatmap :")
+            st.pyplot(fig)
+        
     if st.checkbox("Show the percentages of Religions in India by a piechart"):
         st.write()
         fig = plt.figure(figsize=(50,25))
