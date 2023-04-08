@@ -118,7 +118,16 @@ if uploaded_file is not None:
         plt.legend()
         st.pyplot(fig)
 
-    
+    if st.checkbox("Population of Top 10 Cities in India (Census 2011)"):
+        data = data.sort_values('Population', ascending=False).head(10)
+        fig, ax = plt.subplots()
+        ax.bar(data['State_name'], data['Population'])
+        ax.set_title('Population of Top 10 Cities in India (Census 2011)')
+        ax.set_xlabel('State_name')
+        ax.set_ylabel('Population')
+        plt.xticks(rotation=20)
+        st.pyplot(fig)
+        
     if st.header("Check the Details of Selected States and Districts"):
         state_options = data["State_name"].unique()
         district_options = {}
@@ -132,13 +141,5 @@ if uploaded_file is not None:
             filtered_data = data.loc[data["State_name"] == selected_state]
         st.write(filtered_data)
 
-    if st.checkbox("Population of Top 10 Cities in India (Census 2011)"):
-        data = data.sort_values('Population', ascending=False).head(10)
-        fig, ax = plt.subplots()
-        ax.bar(data['State_name'], data['Population'])
-        ax.set_title('Population of Top 10 Cities in India (Census 2011)')
-        ax.set_xlabel('State_name')
-        ax.set_ylabel('Population')
-        plt.xticks(rotation=20)
-        st.pyplot(fig)
+    
 
