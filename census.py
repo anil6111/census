@@ -44,14 +44,17 @@ if uploaded_file is not None:
         elif option == "Add suffix to column names":
             st.write(data.add_suffix('_rightone'))
         elif option == "Add prefix to column names":
-            st.write(data.add_prefix('leftone_'))
+            st.write(data.add_prefix('leftone_')) 
    
     if st.checkbox("SOME STATISTICAL OPERATIONS"):
         option = st.radio(
         'Select an operation',
-        ('Calculate state-wise total number of population and population with different religions',
+        ('statistics of the dataset ?','Calculate state-wise total number of population and population with different religions',
         'How many Male Workers were there in Maharashtra state ?', 'Calculate the total population of India according to the 2011 Census ?',
         'Which state has the highest population ?','Calculate the correlation coefficient between two Attributes'))
+
+        if option == 'statistics of the dataset ?':
+            st.write(data.describe())
 
         if option == 'Calculate state-wise total number of population and population with different religions':
             st.write(data.groupby('State_name').agg({'Population': 'sum', 'Hindus': 'sum', 'Muslims': 'sum', 'Christians': 'sum', 'Sikhs': 'sum', 'Buddhists': 'sum', 'Jains': 'sum'}).sort_values(by='Population', ascending=False))
@@ -69,6 +72,13 @@ if uploaded_file is not None:
         if option == 'Calculate the correlation coefficient between two Attributes':
             corr = data['Male_Workers'].corr(data['Female_Workers'])
             st.write("Correlation coefficient:", corr)
+
+    if st.checkbox("Find the statewise population  of India "):
+        state = st.selectbox('Select a state:', sorted(data['State_name'].unique()))
+        state_data = data[data['State_name'] == state]
+        district_populations = state_data.groupby('District_name')['Population'].sum()
+        st.write('Total population by district in', state, ':')
+        st.write(district_populations)
      
     if st.header("\nData visualizations"):
         if st.checkbox("Show the percentages of Religions in India by a piechart"):
