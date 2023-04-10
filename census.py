@@ -107,6 +107,12 @@ if uploaded_file is not None:
             ax.set_ylabel('Frequency')
             plt.legend()
             st.pyplot(fig)
+        if st.checkbox("Correlation heatmap between two similar columns"):
+            corr_matrix = data.iloc[:,3:7].corr()
+            fig,ax=plt.subplots()
+            sns.heatmap(corr_matrix)
+            plt.title("Correlation Heatmap :")
+            st.pyplot(fig)
 
     if st.checkbox("Find the statewise population  of India "):
         state = st.selectbox('Select a state:', sorted(data['State_name'].unique()))
