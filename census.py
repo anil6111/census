@@ -73,12 +73,6 @@ if uploaded_file is not None:
             corr = data['Male_Workers'].corr(data['Female_Workers'])
             st.write("Correlation coefficient:", corr)
 
-    if st.checkbox("Find the statewise population  of India "):
-        state = st.selectbox('Select a state:', sorted(data['State_name'].unique()))
-        state_data = data[data['State_name'] == state]
-        district_populations = state_data.groupby('District_name')['Population'].sum()
-        st.write('Total population by district in', state, ':')
-        st.write(district_populations)
      
     if st.header("\nData visualizations"):
         if st.checkbox("Show the percentages of Religions in India by a piechart"):
@@ -113,6 +107,14 @@ if uploaded_file is not None:
             ax.set_ylabel('Frequency')
             plt.legend()
             st.pyplot(fig)
+
+    if st.checkbox("Find the statewise population  of India "):
+        state = st.selectbox('Select a state:', sorted(data['State_name'].unique()))
+        state_data = data[data['State_name'] == state]
+        district_populations = state_data.groupby('District_name')['Population'].sum()
+        st.write('Total population by district in', state, ':')
+        st.write(district_populations)
+    
 
     def calc_pop_density(population, area):
         return population / area
