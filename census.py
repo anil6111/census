@@ -149,6 +149,3 @@ if uploaded_file is not None:
         else:
             filtered_data = data.loc[data["State_name"] == selected_state]
         st.write(filtered_data)
-
-    
-
